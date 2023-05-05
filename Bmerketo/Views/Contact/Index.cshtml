@@ -1,0 +1,12 @@
+﻿@{
+    var BreadcrumbModel = new BreadcrumbModel()
+    {
+        Title = "CONTACT",
+        SubTitle1 = "HOME",
+        SubTitle2 = "CONTACT"
+    };
+}
+
+<partial name="/Views/Partials/_Breadcrumb.cshtml" model="@BreadcrumbModel" />
+<partial name="/Views/Partials/Forms/_ContactForm.cshtml" />
+<partial name="/Views/Partials/_GoogleMaps.cshtml" />
