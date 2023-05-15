@@ -1,0 +1,99 @@
+.register {
+
+    .container {
+        padding-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .registerbox {
+            width: 1140px;
+            height: auto;
+            margin-bottom: 100px;
+            border: 1px solid $color-dark-5;
+            box-shadow: 2px 2px 6px $color-dark-4;
+
+            .title {
+                font-size: 20px;
+                font-family: $font-weight-regular;
+                font-family: $font-roboto;
+                padding: 30px 0 0 20px;
+
+                .underline {
+                    content: "";
+                    display: block;
+                    height: 2px;
+                    width: 6px;
+                    //* fortsätt här
+                }
+            }
+
+            .register-form {
+                padding: 15px;
+                display: grid;
+                grid-template-rows: repeat(10, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                grid-template-areas: "firstname lastname" "streetname streetname" "postalcode city" "mobile company" "email email" "password password" "confirmpassword confirmpassword" "profileimage profileimage" "checkbox check" "button button";
+            }
+
+            .firstname-box {
+                grid-area: firstname;
+            }
+
+            .lastname-box {
+                grid-area: lastname;
+            }
+
+            .streetname-box {
+                grid-area: streetname;
+            }
+
+            .postalcode-box {
+                grid-area: postalcode;
+            }
+
+            .city-box {
+                grid-area: city;
+            }
+
+            .mobile-box {
+                grid-area: mobile;
+            }
+
+            .company-box {
+                grid-area: company;
+            }
+
+            .email-box {
+                grid-area: email;
+            }
+
+            .password-box {
+                grid-area: password;
+            }
+
+            .confirm-password-box {
+                grid-area: confirmpassword;
+            }
+
+            .profileimage-box {
+                grid-area: profileimage;
+            }
+
+            .checkbox-box {
+                grid-area: checkbox;
+            }
+
+            .check {
+                grid-area: check;
+            }
+
+            .btn-theme {
+                grid-area: button;
+                width: 300px;
+                height: auto;
+            }
+        }
+    }
+}

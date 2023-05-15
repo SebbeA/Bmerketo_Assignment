@@ -926,3 +926,158 @@ footer .container {
     justify-self: flex-start;
   }
 }
+
+.login .container {
+  position: relative;
+}
+.login .container .loginbox {
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #E1E1E1;
+  box-shadow: 1px 1px 5px #AEAEAE;
+}
+@media (min-width: 1200px) {
+  .login .container .loginbox {
+    width: 1140px;
+    height: 480px;
+  }
+}
+.login .container .loginbox .title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 30px 0 15px 20px;
+}
+.login .container .loginbox .title .underline::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 6%;
+  background-color: #AEAEAE;
+  bottom: 0;
+  margin-top: 6px;
+}
+.login .container .loginbox .login-form {
+  padding: 20px;
+}
+.login .container .loginbox .login-form .email-login {
+  padding-bottom: 20px;
+}
+.login .container .loginbox .login-form .email-login .accountlink {
+  color: #FA3150;
+  text-decoration: none;
+  font-size: 14px;
+}
+@media (min-width: 1200px) {
+  .login .container .loginbox .login-form .email-login .accountlink {
+    padding: 25px;
+  }
+}
+.login .container .loginbox .login-form .password-login {
+  padding-bottom: 20px;
+}
+.login .container .loginbox .login-form .password-login .password-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login .container .loginbox .login-form .password-login .password-flex .password-link {
+  color: #FA3150;
+  text-decoration: none;
+  font-size: 14px;
+}
+.login .container .loginbox .login-form .checkbox-group {
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
+}
+.login .container .loginbox .login-form .checkbox-group .checkbox-custom {
+  display: flex;
+  align-items: center;
+}
+.login .container .loginbox .login-form .checkbox-group .checkbox-custom .checkbox-input {
+  /*order: 2 !important;
+  padding-left: 20px;*/
+}
+
+.register .container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register .container .registerbox {
+  width: 1140px;
+  height: auto;
+  margin-bottom: 100px;
+  border: 1px solid #E1E1E1;
+  box-shadow: 2px 2px 6px #AEAEAE;
+}
+.register .container .registerbox .title {
+  font-size: 20px;
+  font-family: 400;
+  font-family: "Roboto", sans-serif;
+  padding: 30px 0 0 20px;
+}
+.register .container .registerbox .title .underline {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 6px;
+}
+.register .container .registerbox .register-form {
+  padding: 15px;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  grid-template-areas: "firstname lastname" "streetname streetname" "postalcode city" "mobile company" "email email" "password password" "confirmpassword confirmpassword" "profileimage profileimage" "checkbox check" "button button";
+}
+.register .container .registerbox .firstname-box {
+  grid-area: firstname;
+}
+.register .container .registerbox .lastname-box {
+  grid-area: lastname;
+}
+.register .container .registerbox .streetname-box {
+  grid-area: streetname;
+}
+.register .container .registerbox .postalcode-box {
+  grid-area: postalcode;
+}
+.register .container .registerbox .city-box {
+  grid-area: city;
+}
+.register .container .registerbox .mobile-box {
+  grid-area: mobile;
+}
+.register .container .registerbox .company-box {
+  grid-area: company;
+}
+.register .container .registerbox .email-box {
+  grid-area: email;
+}
+.register .container .registerbox .password-box {
+  grid-area: password;
+}
+.register .container .registerbox .confirm-password-box {
+  grid-area: confirmpassword;
+}
+.register .container .registerbox .profileimage-box {
+  grid-area: profileimage;
+}
+.register .container .registerbox .checkbox-box {
+  grid-area: checkbox;
+}
+.register .container .registerbox .check {
+  grid-area: check;
+}
+.register .container .registerbox .btn-theme {
+  grid-area: button;
+  width: 300px;
+  height: auto;
+}

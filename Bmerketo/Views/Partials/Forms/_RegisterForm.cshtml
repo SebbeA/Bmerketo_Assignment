@@ -1,0 +1,93 @@
+﻿@model RegisterViewModel
+
+
+<section class="register">
+    <div class="container">
+        <div class="registerbox">
+            <h5 class="title">
+                Please Register Your New Account
+                <span class="underline"></span>
+            </h5>
+
+            <form method="post" class="register-form" novalidate>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="firstname-box">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control">
+                    <small><span asp-validation-for="FirstName" class="text-danger"></span></small>
+                </div>
+
+                <div class="lastname-box">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control">
+                    <small><span asp-validation-for="LastName" class="text-danger"></span></small>
+                </div>
+
+                <div class="streetname-box">
+                    <label asp-for="StreetName"></label>
+                    <input asp-for="StreetName" class="form-control">
+                    <small><span asp-validation-for="StreetName" class="text-danger"></span></small>
+                </div>
+
+                <div class="postalcode-box">
+                    <label asp-for="PostalCode"></label>
+                    <input asp-for="PostalCode" class="form-control">
+                    <small><span asp-validation-for="PostalCode" class="text-danger"></span></small>
+                </div>
+
+                <div class="city-box">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control">
+                    <small><span asp-validation-for="City" class="text-danger"></span></small>
+                </div>
+
+                <div class="mobile-box">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" class="form-control">
+                    <small><span asp-validation-for="PhoneNumber" class="text-danger"></span></small>
+                </div>
+
+                <div class="company-box">
+                    <label asp-for="Company"></label>
+                    <input asp-for="Company" class="form-control">
+                    <small><span asp-validation-for="Company" class="text-danger"></span></small>
+                </div>
+
+                <div class="email-box">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control">
+                    <small><span asp-validation-for="Email" class="text-danger"></span></small>
+                </div>
+
+                <div class="password-box">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control">
+                    <small><span asp-validation-for="Password" class="text-danger"></span></small>
+                </div>
+
+                <div class="confirm-password-box">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control">
+                    <small><span asp-validation-for="ConfirmPassword" class="text-danger"></span></small>
+                </div>
+
+                <div class="profileimage-box">
+                    <label asp-for="ProfileImage"></label>
+                    <input asp-for="ProfileImage" class="form-control">
+                    <small><span asp-validation-for="ProfileImage" class="text-danger"></span></small>
+                </div>
+
+                <div class="checkbox-box">
+                    <label class="checkbox-custom">
+                        I have read and accepts the terms and agreements
+                        <input type="checkbox" checked="checked" class="check">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <button class="btn-theme" type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+.login {
+    .container {
+        position: relative;
+
+        .loginbox {
+            width: auto;
+            height: auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid $color-dark-5;
+            box-shadow: 1px 1px 5px $color-dark-4;
+
+            @include xl {
+                width: 1140px;
+                height: 480px;
+            }
+
+            .title {
+                font-family: $font-roboto;
+                font-weight: $font-weight-regular;
+                font-size: 20px;
+                padding: 30px 0 15px 20px;
+
+                .underline::after {
+                    content: "";
+                    display: block;
+                    height: 1px;
+                    width: 6%;
+                    background-color: $color-dark-4;
+                    bottom: 0;
+                    margin-top: 6px;
+                }
+            }
+
+            .login-form {
+                padding: 20px;
+
+                .email-login {
+                    padding-bottom: 20px;
+
+                    .accountlink {
+                        color: $color-theme-1;
+                        text-decoration: none;
+                        font-size: 14px;
+
+                        @include xl {
+                            padding: 25px;
+                        }
+                    }
+                }
+
+                .password-login {
+                    padding-bottom: 20px;
+
+                    .password-flex {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .password-link {
+                            color: $color-theme-1;
+                            text-decoration: none;
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                .checkbox-group {
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 40px;
+
+                    .checkbox-custom {
+                        display: flex;
+                        align-items: center;
+
+                        .checkbox-input {
+                            /*order: 2 !important;
+                            padding-left: 20px;*/
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
