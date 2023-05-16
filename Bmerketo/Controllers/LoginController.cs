@@ -1,17 +1,16 @@
-﻿using Bmerketo.Models.Identity;
+﻿using Bmerketo.Services;
 using Bmerketo.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bmerketo.Controllers;
 
 public class LoginController : Controller
 {
-    private readonly SignInManager<CustomIdentityUser> _signInManager;
+    private readonly AuthService _authService;
 
-    public LoginController(SignInManager<CustomIdentityUser> signInManager)
+    public LoginController(AuthService authService)
     {
-        _signInManager = signInManager;
+        _authService = authService;
     }
 
     public IActionResult Index()
@@ -24,8 +23,7 @@ public class LoginController : Controller
     {
         if (ModelState.IsValid)
         {
-           var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, false, false);
-            if (result.Succeeded)
+           if (await _authService.LogInAsync(loginViewModel))
                 return RedirectToAction("Index", "Home");
 
             ModelState.AddModelError("", "Incorrect email or password");

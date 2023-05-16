@@ -1,4 +1,5 @@
-﻿using Bmerketo.Models.Identity;
+﻿using Bmerketo.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bmerketo.ViewModels;
@@ -52,15 +53,27 @@ public class RegisterViewModel
     [Display(Name = "Company (optional)")]
     public string? Company { get; set; }
 
-    public static implicit operator CustomIdentityUser(RegisterViewModel registerViewModel)
+    public static implicit operator IdentityUser(RegisterViewModel registerViewModel)
     {
-        return new CustomIdentityUser
+        return new IdentityUser
         {
             UserName = registerViewModel.Email,
-            FirstName = registerViewModel.FirstName,
-            LastName = registerViewModel.LastName,
             Email = registerViewModel.Email,
             PhoneNumber = registerViewModel.PhoneNumber,
+        };
+    }
+
+    public static implicit operator UserProfileEntity(RegisterViewModel registerViewModel)
+    {
+        return new UserProfileEntity
+        {
+            FirstName = registerViewModel.FirstName,
+            LastName = registerViewModel.LastName,
+            StreetName = registerViewModel.StreetName,
+            PostalCode = registerViewModel.PostalCode,
+            City = registerViewModel.City,
+            Company = registerViewModel.Company,
+            ProfileImage = registerViewModel.ProfileImage
         };
     }
 }
