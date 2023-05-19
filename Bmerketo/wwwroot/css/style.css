@@ -1132,8 +1132,7 @@ footer .container {
 }
 
 .add-new-product {
-  padding-top: 101px;
-  border: 1px solid #000000;
+  padding-top: 100px;
 }
 .add-new-product .container {
   display: flex;
@@ -1153,4 +1152,53 @@ footer .container {
   border: 1px solid #292929;
   background-color: #292929;
   color: #FFFFFF;
+}
+
+.new-product {
+  padding-top: 100px;
+}
+.new-product .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.new-product .container .new-product-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  color: #000000;
+  padding: 20px;
+}
+.new-product .container .product-form {
+  margin-bottom: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+.new-product .container .product-form .articlenumber {
+  margin-bottom: 20px;
+}
+.new-product .container .product-form .product-title {
+  margin-bottom: 20px;
+}
+.new-product .container .product-form .product-price {
+  margin-bottom: 20px;
+}
+.new-product .container .product-form .product-image {
+  margin-bottom: 20px;
+}
+.new-product .container .product-form .product-description {
+  margin-bottom: 20px;
+}
+.new-product .container .product-form .checkbox-tags {
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.new-product .container .product-form .checkbox-tags .mb-2 {
+  align-items: flex-start !important;
+  margin: 0;
+}
+.new-product .container .product-form .btn-theme {
+  margin: 40px 0;
+  width: 100%;
+  height: auto;
 }

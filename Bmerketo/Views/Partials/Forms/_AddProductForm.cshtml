@@ -1,0 +1,54 @@
+﻿@model AddProductFormViewModel
+
+<section class="new-product">
+    <div class="container">
+        <h1 class="new-product-title">ADD A NEW PRODUCT</h1>
+
+        <form method="post" class="product-form" novalidate>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="articlenumber">
+                <label asp-for="ArticleNumber"></label>
+                <input asp-for="ArticleNumber" type="text">
+                <span asp-validation-for="ArticleNumber" class="text-danger"></span>
+            </div>
+
+            <div class="product-title">
+                <label asp-for="ProductName"></label>
+                <input asp-for="ProductName" type="text">
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+
+            <div class="product-price">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" type="text">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="product-image">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" type="text">
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="product-description">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" type="text" class="resize"></textarea>
+            </div>
+
+            <div class="checkbox-tags">
+                @foreach (SelectListItem tag in ViewBag.Tags)
+                {
+                    <div class="mb-2">
+                        <input type="checkbox" name="Tags" id="tag-@tag.Text-@tag.Value" value="@tag.Value" checked="@tag.Selected" class="form-check-input" />
+                        <label for="tag-@tag.Text-@tag.Value" class="small form-check-label">@tag.Text</label>
+                    </div>
+                }
+            </div>
+
+            <button class="btn-theme">ADD YOUR PRODUCT</button>
+
+        </form>
+    </div>
+</section>

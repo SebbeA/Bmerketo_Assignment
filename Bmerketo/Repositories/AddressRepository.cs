@@ -3,7 +3,7 @@ using Bmerketo.Models.Entities;
 
 namespace Bmerketo.Repositories;
 
-public class AddressRepository : Repository<AddressEntity>
+public class AddressRepository : RepositoryIdentityContext<AddressEntity>
 {
     public AddressRepository(IdentityContext context) : base(context)
     {

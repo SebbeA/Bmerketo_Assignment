@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\scss\components\_newproductform.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\scss\components\_newproductform.scss" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +22,7 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\scss\components\_newproductform.scss" />
   </ItemGroup>
 
   <ItemGroup>

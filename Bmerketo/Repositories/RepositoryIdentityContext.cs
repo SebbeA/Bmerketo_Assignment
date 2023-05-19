@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 
 namespace Bmerketo.Repositories
 {
-    public abstract class Repository<TEntity> where TEntity : class
+    public abstract class RepositoryIdentityContext<TEntity> where TEntity : class
     {
         private readonly IdentityContext _context;
 
-        protected Repository(IdentityContext context)
+        protected RepositoryIdentityContext(IdentityContext context)
         {
             _context = context;
         }

@@ -16,10 +16,15 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TagService>();
+builder.Services.AddScoped<ProductService>();
 
 // Repos
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<UserAddressRepository>();
+builder.Services.AddScoped<TagRepository>();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductTagRepository>();
 
 // Connection String
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
