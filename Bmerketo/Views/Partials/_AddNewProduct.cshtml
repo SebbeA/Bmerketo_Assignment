@@ -1,0 +1,9 @@
+﻿@if (signInManager.IsSignedIn(User) && User.IsInRole("admin")) 
+{
+    <section class="add-new-product">
+        <div class="container">
+            <a class="btn-theme" asp-controller="Products" asp-action="Create">ADD A NEW PRODUCT</a>
+        </div>
+    </section>
+}
+

@@ -1,5 +1,5 @@
 ﻿using Bmerketo.Contexts;
-using Bmerketo.Models.Entities;
+using Bmerketo.Models.Identity;
 using Bmerketo.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,19 +9,21 @@ namespace Bmerketo.Services;
 
 public class AuthService
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<AppUser> _userManager;
     private readonly IdentityContext _identityContext;
     private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<AppUser> _signInManager;
     private readonly SeedService _seedService;
+    private readonly AddressService _addressService;
 
-    public AuthService(UserManager<IdentityUser> userManager, IdentityContext identityContext, SignInManager<IdentityUser> signInManager, SeedService seedService, RoleManager<IdentityRole> roleManager)
+    public AuthService(UserManager<AppUser> userManager, IdentityContext identityContext, SignInManager<AppUser> signInManager, SeedService seedService, RoleManager<IdentityRole> roleManager, AddressService addressService)
     {
         _userManager = userManager;
         _identityContext = identityContext;
         _signInManager = signInManager;
         _seedService = seedService;
         _roleManager = roleManager;
+        _addressService = addressService;
     }
 
     public async Task<bool> RegisterAsync(RegisterViewModel registerViewModel)
@@ -34,37 +36,39 @@ public class AuthService
             if (!await _userManager.Users.AnyAsync())
                 roleName = "admin";
 
-            IdentityUser identityUser = registerViewModel;
-            await _userManager.CreateAsync(identityUser, registerViewModel.Password);
+            AppUser appUser = registerViewModel;
 
-            await _userManager.AddToRoleAsync(identityUser, roleName);
+            var result = await _userManager.CreateAsync(appUser, registerViewModel.Password);
 
-            UserProfileEntity userProfile = registerViewModel;
-            userProfile.UserId = identityUser.Id;
+            await _userManager.AddToRoleAsync(appUser, roleName);
+            if (result.Succeeded)
+            {
+                var addressEntity = await _addressService.GetOrCreateAsync(registerViewModel);
+                if (addressEntity != null)
+                {
+                    await _addressService.AddAddressAsync(appUser, addressEntity);
+                    return true;
+                }
+            }
 
-            _identityContext.UserProfiles.Add(userProfile);
-            await _identityContext.SaveChangesAsync();
-
-            return true;
-        }
-        catch
-        {
             return false;
+        } 
+        catch 
+        { 
+            return false; 
         }
     }
 
     public async Task<bool> LogInAsync(LoginViewModel loginViewModel)
     {
-        try
+        var appUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == loginViewModel.Email);
+        if (appUser != null)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
-
+            var result = await _signInManager.PasswordSignInAsync(appUser, loginViewModel.Password, loginViewModel.RememberMe, false);
             return result.Succeeded;
         }
-        catch
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public async Task<bool> LogOutAsync(ClaimsPrincipal user)

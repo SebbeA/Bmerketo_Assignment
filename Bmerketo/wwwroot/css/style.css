@@ -1000,10 +1000,59 @@ footer .container {
   align-items: center;
 }
 .login .container .loginbox .login-form .checkbox-group .checkbox-custom .checkbox-input {
-  /*order: 2 !important;
-  padding-left: 20px;*/
+  order: 2 !important;
 }
 
+/*.login {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 60px 0;
+    }
+
+    .container {
+        border: 0px solid $color-dark-5;
+        padding: 30px;
+
+        @include md {
+            border: 1px solid $color-dark-5;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "email" "password" "rememberme" "button";
+
+        .email {
+            grid-area: email;
+        }
+
+        .password {
+            grid-area: password;
+        }
+
+        .rememberme {
+            grid-area: rememberme;
+            margin: 10px 0;
+        }
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}*/
 .register .container {
   padding-top: 100px;
   display: flex;
@@ -1080,4 +1129,28 @@ footer .container {
   grid-area: button;
   width: 300px;
   height: auto;
+}
+
+.add-new-product {
+  padding-top: 101px;
+  border: 1px solid #000000;
+}
+.add-new-product .container {
+  display: flex;
+  justify-content: flex-start;
+}
+.add-new-product .container .btn-theme {
+  /*        text-decoration: none;
+          margin: 30px 0px 30px 0px;
+          font-family: $font-poppins;
+          padding: 10px 15px;
+          border: 1px solid $color-dark-5;
+          background-color: $color-white;
+          color: $color-dark-1;
+          transition: all 0.5s ease-in-out;*/
+}
+.add-new-product .container .btn-theme:hover {
+  border: 1px solid #292929;
+  background-color: #292929;
+  color: #FFFFFF;
 }

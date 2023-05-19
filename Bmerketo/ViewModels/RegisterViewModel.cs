@@ -1,4 +1,5 @@
 ﻿using Bmerketo.Models.Entities;
+using Bmerketo.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,10 +12,12 @@ public class RegisterViewModel
     [Display(Name = "First Name *")]
     public string FirstName { get; set; } = null!;
 
+
     [Required(ErrorMessage = "You need to enter your last name")]
     [RegularExpression(@"^[a-öA-Ö]+(?:[ é'-][a-öA-Ö]+)*$", ErrorMessage = "You need to enter a correct last name")]
     [Display(Name = "Last Name *")]
     public string LastName { get; set; } = null!;
+
 
     [Required(ErrorMessage = "You need to enter your E-mail")]
     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "You need to enter a correct E-mail")]
@@ -22,11 +25,13 @@ public class RegisterViewModel
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;
 
+
     [Required(ErrorMessage = "You need to enter a password")]
     [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,}$", ErrorMessage = "You need to enter a correct password")]
     [Display(Name = "Password *")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
+
 
     [Required(ErrorMessage = "You need to confirm your password")]
     [Compare(nameof(Password), ErrorMessage = "Your password doesn't match")]
@@ -35,45 +40,59 @@ public class RegisterViewModel
     public string ConfirmPassword { get; set; } = null!;
 
 
-    [Display(Name = "Street Name (optional)")]
-    public string? StreetName { get; set; }
+    [Required(ErrorMessage = "You need to enter your Street name")]
+    [Display(Name = "Street Name *")]
+    public string StreetName { get; set; } = null!;
 
-    [Display(Name = "Postal Code (optional)")]
-    public string? PostalCode { get; set; }
 
-    [Display(Name = "City (optional)")]
-    public string? City { get; set; }
+    [Required(ErrorMessage = "You need to enter your Postal Code")]
+    [Display(Name = "Postal Code *")]
+    public string PostalCode { get; set; } = null!;
+
+
+    [Required(ErrorMessage = "You need to enter your City")]
+    [Display(Name = "City *")]
+    public string City { get; set; } = null!;
+
 
     [Display(Name = "Mobile (optional)")]
     public string? PhoneNumber { get; set; }
 
+
     [Display(Name = "Upload Profile Image (optional)")]
-    public string? ProfileImage { get; set; }
+    [DataType(DataType.Upload)]
+    public IFormFile? ImageFile { get; set; }
+
 
     [Display(Name = "Company (optional)")]
     public string? Company { get; set; }
 
-    public static implicit operator IdentityUser(RegisterViewModel registerViewModel)
+    [Required(ErrorMessage = "You must aggree the terms and conditions")]
+    [Display(Name = "I have read and accepts the terms and conditions")]
+    public bool TermsAndAgreement { get; set; } = false;
+
+
+
+    public static implicit operator AppUser(RegisterViewModel registerViewModel)
     {
-        return new IdentityUser
+        return new AppUser
         {
             UserName = registerViewModel.Email,
+            FirstName = registerViewModel.FirstName,
+            LastName = registerViewModel.LastName,
             Email = registerViewModel.Email,
             PhoneNumber = registerViewModel.PhoneNumber,
+            Company = registerViewModel.Company,
         };
     }
 
-    public static implicit operator UserProfileEntity(RegisterViewModel registerViewModel)
+    public static implicit operator AddressEntity(RegisterViewModel registerViewModel)
     {
-        return new UserProfileEntity
+        return new AddressEntity
         {
-            FirstName = registerViewModel.FirstName,
-            LastName = registerViewModel.LastName,
             StreetName = registerViewModel.StreetName,
             PostalCode = registerViewModel.PostalCode,
-            City = registerViewModel.City,
-            Company = registerViewModel.Company,
-            ProfileImage = registerViewModel.ProfileImage
+            City = registerViewModel.City
         };
     }
 }

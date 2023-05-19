@@ -4,6 +4,7 @@ using Bmerketo.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bmerketo.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230519090730_SeedUserRole")]
+    partial class SeedUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,19 +146,18 @@ namespace Bmerketo.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            Id = "da530c49-cc04-4398-8bf6-6272dc08116e",
+                            Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0228355-2d77-41a3-a740-5d0805e8d2ce",
-                            Email = "administrator@domian.com",
+                            ConcurrencyStamp = "22a2c3ac-3e04-4ebd-bbc9-15ba129701ec",
                             EmailConfirmed = false,
                             FirstName = "System",
                             LastName = "Admin",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEO7GhiFBl7xiGj2GAUmqZs1GsYiEnzrwVbDGxNbLmFzgEEY3oBcOie1tgqJgcXTe4A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMRPteuz15HkqVLS9l8FKQzYcmyMzZeEnv+dhkcLkgbKCSkq/nwwiBwjffMq0MUsfg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "577efceb-eccb-423c-9208-5910bf571b64",
+                            SecurityStamp = "ec9d14fa-b609-4ce0-aef4-3a25d5fce2b6",
                             TwoFactorEnabled = false,
-                            UserName = "administrator@domian.com"
+                            UserName = "administrator"
                         });
                 });
 
@@ -188,7 +190,7 @@ namespace Bmerketo.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            Id = "e9048dc6-f03c-4fee-87a4-3ffe05013737",
+                            Id = "1",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -283,8 +285,8 @@ namespace Bmerketo.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            UserId = "da530c49-cc04-4398-8bf6-6272dc08116e",
-                            RoleId = "e9048dc6-f03c-4fee-87a4-3ffe05013737"
+                            UserId = "1",
+                            RoleId = "1"
                         });
                 });
 

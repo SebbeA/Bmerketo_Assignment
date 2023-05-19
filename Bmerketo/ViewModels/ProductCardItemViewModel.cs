@@ -1,6 +1,6 @@
 ﻿namespace Bmerketo.ViewModels;
 
-public class ProductCardItemSmallViewModel
+public class ProductCardItemViewModel
 {
     public string? Id { get; set; }
     public string? ImageUrl { get; set; }

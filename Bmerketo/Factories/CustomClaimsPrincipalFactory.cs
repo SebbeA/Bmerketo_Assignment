@@ -1,24 +1,27 @@
-﻿using Bmerketo.Services;
+﻿using Bmerketo.Models.Identity;
+using Bmerketo.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 
 namespace Bmerketo.Factories;
 
-public class CustomClaimsPrincipalFactory : UserClaimsPrincipalFactory<IdentityUser>
+public class CustomClaimsPrincipalFactory : UserClaimsPrincipalFactory<AppUser>
 {
-    private readonly UserService _userService;
-    public CustomClaimsPrincipalFactory(UserManager<IdentityUser> userManager, IOptions<IdentityOptions> optionsAccessor, UserService userService) : base(userManager, optionsAccessor)
+    private readonly UserManager<AppUser> _userManager;
+    public CustomClaimsPrincipalFactory(UserManager<AppUser> userManager, IOptions<IdentityOptions> optionsAccessor) : base(userManager, optionsAccessor)
     {
-        _userService = userService;
+        _userManager = userManager;
     }
 
-    protected override async Task<ClaimsIdentity> GenerateClaimsAsync(IdentityUser user)
+    protected override async Task<ClaimsIdentity> GenerateClaimsAsync(AppUser user)
     {
         var claimsIdentity = await base.GenerateClaimsAsync(user);
 
-        var userProfileEntity = await _userService.GetUserProfileAsync(user.Id);
-        claimsIdentity.AddClaim(new Claim("DisplayName", $"{userProfileEntity.FirstName} {userProfileEntity.LastName}"));
+        claimsIdentity.AddClaim(new Claim("DisplayName", $"{user.FirstName} {user.LastName}"));
+
+        var roles = await UserManager.GetRolesAsync(user);
+        claimsIdentity.AddClaims(roles.Select(x => new Claim(ClaimTypes.Role, x)));
 
         return claimsIdentity;
     }

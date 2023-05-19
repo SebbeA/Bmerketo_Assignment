@@ -14,5 +14,6 @@ public class LoginViewModel
     [Display(Name = "Enter your Password")]
     public string Password { get; set; } = null!;
 
-    public bool RememberMe { get; set; }
+    [Display(Name = "Keep me logged in")]
+    public bool RememberMe { get; set; } = false;
 }

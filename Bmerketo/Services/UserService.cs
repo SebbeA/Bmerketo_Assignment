@@ -13,9 +13,9 @@ public class UserService
         _identityContext = identityContext;
     }
 
-    public async Task<UserProfileEntity> GetUserProfileAsync(string userId)
-    {
-        var userProfileEntity = await _identityContext.UserProfiles.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userId);
-        return userProfileEntity!;
-    }
+    //public async Task<UserProfileEntity> GetUserProfileAsync(string userId)
+    //{
+    //    var userProfileEntity = await _identityContext.UserProfiles.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userId);
+    //    return userProfileEntity!;
+    //}
 }

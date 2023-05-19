@@ -4,6 +4,7 @@ using Bmerketo.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bmerketo.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230519081625_SeedRoles")]
+    partial class SeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,24 +142,6 @@ namespace Bmerketo.Migrations.Identity
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "da530c49-cc04-4398-8bf6-6272dc08116e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0228355-2d77-41a3-a740-5d0805e8d2ce",
-                            Email = "administrator@domian.com",
-                            EmailConfirmed = false,
-                            FirstName = "System",
-                            LastName = "Admin",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEO7GhiFBl7xiGj2GAUmqZs1GsYiEnzrwVbDGxNbLmFzgEEY3oBcOie1tgqJgcXTe4A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "577efceb-eccb-423c-9208-5910bf571b64",
-                            TwoFactorEnabled = false,
-                            UserName = "administrator@domian.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -188,7 +173,7 @@ namespace Bmerketo.Migrations.Identity
                     b.HasData(
                         new
                         {
-                            Id = "e9048dc6-f03c-4fee-87a4-3ffe05013737",
+                            Id = "86114841-0c9c-48cf-8f2b-6aa26ef83f14",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -279,13 +264,6 @@ namespace Bmerketo.Migrations.Identity
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "da530c49-cc04-4398-8bf6-6272dc08116e",
-                            RoleId = "e9048dc6-f03c-4fee-87a4-3ffe05013737"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

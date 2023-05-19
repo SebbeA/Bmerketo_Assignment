@@ -1,5 +1,7 @@
 using Bmerketo.Contexts;
 using Bmerketo.Factories;
+using Bmerketo.Models.Identity;
+using Bmerketo.Repositories;
 using Bmerketo.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +14,12 @@ builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<SeedService>();
+builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<UserService>();
 
 // Repos
-
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<UserAddressRepository>();
 
 // Connection String
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
@@ -23,7 +27,7 @@ builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Confi
 
 
 // Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>( x =>
+builder.Services.AddIdentity<AppUser, IdentityRole>( x =>
 {
     x.SignIn.RequireConfirmedAccount = false;
     x.User.RequireUniqueEmail = true;
@@ -32,7 +36,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>( x =>
     .AddEntityFrameworkStores<IdentityContext>()
     .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();
 
-
+// Cookie
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.LoginPath = "/login";
+    x.LogoutPath = "/";
+    x.AccessDeniedPath = "/denied";
+});
 
 
 

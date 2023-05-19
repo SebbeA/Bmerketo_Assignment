@@ -8,7 +8,7 @@
                 <span class="underline"></span>
             </h5>
 
-            <form method="post" class="login-form">
+            <form method="post" class="login-form" novalidate>
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -30,8 +30,8 @@
 
                 <div class="checkbox-group">
                     <label class="checkbox-custom">
-                        Please keep me logged in
-                        <input type="checkbox" checked="checked" class="checkbox-input">
+                        <label asp-for="RememberMe"></label>
+                        <input asp-for="RememberMe" />
                         <span class="checkmark"></span>
                     </label>
                 </div>

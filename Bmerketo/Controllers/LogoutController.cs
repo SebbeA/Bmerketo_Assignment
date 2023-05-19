@@ -1,25 +1,22 @@
-﻿using Bmerketo.Services;
-using Microsoft.AspNetCore.Authorization;
+﻿using Bmerketo.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bmerketo.Controllers;
 
 public class LogoutController : Controller
 {
-    public readonly AuthService _authService;
+    private readonly SignInManager<AppUser> _signInManager;
 
-    public LogoutController(AuthService authService)
+    public LogoutController(SignInManager<AppUser> signInManager)
     {
-        _authService = authService;
+        _signInManager = signInManager;
     }
-
-    [Authorize]
     public async Task<IActionResult> Index()
     {
-        if (await _authService.LogOutAsync(User))
-            return LocalRedirect("/");
+        if (_signInManager.IsSignedIn(User))
+            await _signInManager.SignOutAsync();
 
-        return RedirectToAction("Index", "Profile");
-
+        return LocalRedirect("/");
     }
 }
