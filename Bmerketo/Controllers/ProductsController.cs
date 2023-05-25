@@ -1,7 +1,10 @@
-﻿using Bmerketo.Services;
+﻿using Bmerketo.Contexts;
+using Bmerketo.Services;
 using Bmerketo.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bmerketo.Controllers;
 
@@ -11,27 +14,36 @@ public class ProductsController : Controller
 
     private readonly TagService _tagService;
     private readonly ProductService _productService;
+    private readonly DataContext _context;
 
-    public ProductsController(TagService tagService, ProductService productService)
+    public ProductsController(TagService tagService, ProductService productService, DataContext context)
     {
         _tagService = tagService;
         _productService = productService;
+        _context = context;
     }
 
     #endregion
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        ViewData["Title"] = "Products";
+        var viewModel = new ProductIndexViewModel
+        {
+            Products = await _productService.GetAllAsync()
+        };
 
-        return View();
+        return View(viewModel);
     }
 
-    public IActionResult Details()
+    public async Task<IActionResult> Details(string Id)
     {
-        ViewData["Title"] = "Products";
+        var product = await _context.Product.FirstOrDefaultAsync(x => x.ArticleNumber == Id);
+        if (product == null)
+        {
+            return NotFound();
+        }
 
-        return View();
+        return View(product);
     }
 
     [Authorize(Roles = "admin")]
@@ -48,9 +60,16 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
-            if (await _productService.CreateAsync(addProductFormViewModel)) 
+            var product = await _productService.CreateAsync(addProductFormViewModel);
+            if (product != null) 
             {
                 await _productService.AddProductTagsAsync(addProductFormViewModel, tags);
+
+                if (addProductFormViewModel.ImageUrl != null)
+                {
+                    await _productService.UploadImageAsync(product, addProductFormViewModel.ImageUrl);
+                }
+                
                 return RedirectToAction("Index", "Products");
             }
 

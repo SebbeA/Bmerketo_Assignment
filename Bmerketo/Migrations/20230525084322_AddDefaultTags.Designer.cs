@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bmerketo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230519134141_ProductsAndTags")]
-    partial class ProductsAndTags
+    [Migration("20230525084322_AddDefaultTags")]
+    partial class AddDefaultTags
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,7 @@ namespace Bmerketo.Migrations
 
                     b.HasKey("ArticleNumber");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Bmerketo.Models.Entities.ProductTagEntity", b =>
@@ -86,14 +86,11 @@ namespace Bmerketo.Migrations
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
                     b.HasKey("ArticleNumber", "TagId");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("TagId");
 
-                    b.ToTable("ProductTags");
+                    b.ToTable("ProductTag");
                 });
 
             modelBuilder.Entity("Bmerketo.Models.Entities.TagEntity", b =>
@@ -110,36 +107,36 @@ namespace Bmerketo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("Bmerketo.Models.Entities.ProductTagEntity", b =>
                 {
                     b.HasOne("Bmerketo.Models.Entities.ProductEntity", "Product")
-                        .WithMany("ProductTags")
+                        .WithMany("ProductTag")
                         .HasForeignKey("ArticleNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Bmerketo.Models.Entities.TagEntity", "Tags")
-                        .WithMany("ProductTags")
-                        .HasForeignKey("TagsId")
+                    b.HasOne("Bmerketo.Models.Entities.TagEntity", "Tag")
+                        .WithMany("ProductTag")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
 
-                    b.Navigation("Tags");
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("Bmerketo.Models.Entities.ProductEntity", b =>
                 {
-                    b.Navigation("ProductTags");
+                    b.Navigation("ProductTag");
                 });
 
             modelBuilder.Entity("Bmerketo.Models.Entities.TagEntity", b =>
                 {
-                    b.Navigation("ProductTags");
+                    b.Navigation("ProductTag");
                 });
 #pragma warning restore 612, 618
         }

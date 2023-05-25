@@ -4,37 +4,37 @@
     <div class="container">
         <h1 class="new-product-title">ADD A NEW PRODUCT</h1>
 
-        <form method="post" class="product-form" novalidate>
+        <form method="post" enctype="multipart/form-data" class="product-form" novalidate>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="articlenumber">
                 <label asp-for="ArticleNumber"></label>
-                <input asp-for="ArticleNumber" type="text">
+                <input asp-for="ArticleNumber">
                 <span asp-validation-for="ArticleNumber" class="text-danger"></span>
             </div>
 
             <div class="product-title">
                 <label asp-for="ProductName"></label>
-                <input asp-for="ProductName" type="text">
+                <input asp-for="ProductName">
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
 
             <div class="product-price">
                 <label asp-for="Price"></label>
-                <input asp-for="Price" type="text">
+                <input asp-for="Price">
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
 
             <div class="product-image">
                 <label asp-for="ImageUrl"></label>
-                <input asp-for="ImageUrl" type="text">
+                <input asp-for="ImageUrl">
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
 
             <div class="product-description">
                 <label asp-for="Description"></label>
-                <textarea asp-for="Description" type="text" class="resize"></textarea>
+                <textarea asp-for="Description" class="resize"></textarea>
             </div>
 
             <div class="checkbox-tags">

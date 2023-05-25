@@ -1133,20 +1133,11 @@ footer .container {
 
 .add-new-product {
   padding-top: 100px;
+  padding-bottom: 40px;
 }
 .add-new-product .container {
   display: flex;
   justify-content: flex-start;
-}
-.add-new-product .container .btn-theme {
-  /*        text-decoration: none;
-          margin: 30px 0px 30px 0px;
-          font-family: $font-poppins;
-          padding: 10px 15px;
-          border: 1px solid $color-dark-5;
-          background-color: $color-white;
-          color: $color-dark-1;
-          transition: all 0.5s ease-in-out;*/
 }
 .add-new-product .container .btn-theme:hover {
   border: 1px solid #292929;

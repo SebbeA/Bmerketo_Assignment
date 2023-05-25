@@ -5,13 +5,13 @@
 namespace Bmerketo.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductsAndTags : Migration
+    public partial class ProductAndTag : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Product",
                 columns: table => new
                 {
                     ArticleNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -22,11 +22,11 @@ namespace Bmerketo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ArticleNumber);
+                    table.PrimaryKey("PK_Product", x => x.ArticleNumber);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Tag",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -35,51 +35,50 @@ namespace Bmerketo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Tag", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductTags",
+                name: "ProductTag",
                 columns: table => new
                 {
                     ArticleNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TagId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    TagId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductTags", x => new { x.ArticleNumber, x.TagId });
+                    table.PrimaryKey("PK_ProductTag", x => new { x.ArticleNumber, x.TagId });
                     table.ForeignKey(
-                        name: "FK_ProductTags_Products_ArticleNumber",
+                        name: "FK_ProductTag_Product_ArticleNumber",
                         column: x => x.ArticleNumber,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "ArticleNumber",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductTags_Tags_TagsId",
-                        column: x => x.TagsId,
-                        principalTable: "Tags",
+                        name: "FK_ProductTag_Tag_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductTags_TagsId",
-                table: "ProductTags",
-                column: "TagsId");
+                name: "IX_ProductTag_TagId",
+                table: "ProductTag",
+                column: "TagId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProductTags");
+                name: "ProductTag");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Tag");
         }
     }
 }

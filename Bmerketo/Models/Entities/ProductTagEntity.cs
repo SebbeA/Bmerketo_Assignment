@@ -9,5 +9,5 @@ public class ProductTagEntity
     public ProductEntity Product { get; set; } = null!;
 
     public int TagId { get; set; }
-    public TagEntity Tags { get; set; } = null!;
+    public TagEntity Tag { get; set; } = null!;
 }

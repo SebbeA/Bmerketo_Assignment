@@ -1,3 +1,47 @@
-﻿
+﻿@model ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Products";
+}
 
 <partial name="/Views/Partials/_AddNewProduct.cshtml" />
+
+<section class="all-products">
+    <div class="container">
+        <h1 class="collection-title">ALL PRODUCTS</h1>
+        <div class="collection-grid">
+
+@*            <div class="filter-buttons">
+                <a href="?tag=" class="btn">Show All</a>
+                <a href="?tag=new" class="btn">New</a>
+                <a href="?tag=featured" class="btn ">Featured</a>
+                <a href="?tag=popular" class="btn ">Popular</a>
+            </div>*@
+
+            <div class="collection-item">
+                @foreach (var product in Model.Products)
+                {
+                    <a asp-controller="products" asp-action="details" asp-route-id="@product.ArticleNumber" class="collection-item">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="password-flex justify-content-center align-items-center">
+                                    <img src="~/Images/products/@product.ImageUrl" alt="@product.ProductName" />
+                                    <div>@product.ArticleNumber</div>
+                                    <div>@product.ProductName</div>
+                                    <div>@product.Price.ToString("0.##")</div>
+                                    @foreach (var tag in product.Tags)
+                                    {
+                                        <span>@tag.Product.ProductTag</span>
+                                    }
+                                    <i class="add-cart fa-regular fa-cart-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+

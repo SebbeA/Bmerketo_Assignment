@@ -10,7 +10,7 @@ public class DataContext : DbContext
     }
 
     public DbSet<ContactFormEntity> ContactMessage { get; set; }
-    public DbSet<ProductEntity> Products { get; set; }
-    public DbSet<ProductTagEntity> ProductTags { get; set; }
-    public DbSet<TagEntity> Tags { get; set; }
+    public DbSet<ProductEntity> Product { get; set; }
+    public DbSet<ProductTagEntity> ProductTag { get; set; }
+    public DbSet<TagEntity> Tag { get; set; }
 }

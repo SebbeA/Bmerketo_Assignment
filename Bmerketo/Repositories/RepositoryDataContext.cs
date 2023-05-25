@@ -6,12 +6,16 @@ namespace Bmerketo.Repositories;
 
 public abstract class RepositoryDataContext<TEntity> where TEntity : class
 {
+    #region constructors & private fields
+
     private readonly DataContext _context;
 
     protected RepositoryDataContext(DataContext context)
     {
         _context = context;
     }
+
+    #endregion
 
     public virtual async Task<TEntity> AddAsync(TEntity entity)
     {

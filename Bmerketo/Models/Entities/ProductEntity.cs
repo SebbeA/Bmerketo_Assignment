@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Bmerketo.Models.Dtos;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bmerketo.Models.Entities;
@@ -21,5 +22,18 @@ public class ProductEntity
 
     public string? Description { get; set; }
 
-    public ICollection<ProductTagEntity> ProductTags { get; set; } = new HashSet<ProductTagEntity>();
+    public ICollection<ProductTagEntity> ProductTag { get; set; } = new HashSet<ProductTagEntity>();
+
+    public static implicit operator Product(ProductEntity productEntity)
+    {
+        return new Product
+        {
+            ArticleNumber = productEntity.ArticleNumber,
+            ProductName = productEntity.ProductName,
+            Price = productEntity.Price,
+            ImageUrl = productEntity.ImageUrl,
+            Description = productEntity.Description,
+            Tags = productEntity.ProductTag
+        };
+    }
 }

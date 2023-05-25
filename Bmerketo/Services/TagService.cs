@@ -1,4 +1,6 @@
-﻿using Bmerketo.Repositories;
+﻿using Bmerketo.Models.Entities;
+using Bmerketo.Repositories;
+using Bmerketo.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bmerketo.Services;
@@ -8,10 +10,12 @@ public class TagService
     #region constructors & private fields
 
     private readonly TagRepository _tagRepo;
+    private readonly ProductTagRepository _productTagRepo;
 
-    public TagService(TagRepository tagRepo)
+    public TagService(TagRepository tagRepo, ProductTagRepository productTagRepo)
     {
         _tagRepo = tagRepo;
+        _productTagRepo = productTagRepo;
     }
 
     #endregion
@@ -46,5 +50,17 @@ public class TagService
         }
 
         return tags;
+    }
+
+    public async Task AddTagAsync(AddProductFormViewModel addProductFormViewModel, string[] tags)
+    {
+        foreach (var tag in tags)
+        {
+            await _productTagRepo.AddAsync(new ProductTagEntity
+            {
+                ArticleNumber = addProductFormViewModel.ArticleNumber,
+                TagId = int.Parse(tag)
+            });
+        }
     }
 }
