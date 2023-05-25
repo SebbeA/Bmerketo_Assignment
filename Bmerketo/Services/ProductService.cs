@@ -1,4 +1,5 @@
 ﻿using Bmerketo.Contexts;
+using Bmerketo.Models;
 using Bmerketo.Models.Dtos;
 using Bmerketo.Models.Entities;
 using Bmerketo.Repositories;
@@ -60,11 +61,23 @@ public class ProductService
     }
     public async Task<IEnumerable<Product>> GetAllAsync()
     {
-        var items = await _productRepo.GetAllAsync();
-        var list = new List<Product>();
+        var products = new List<Product>();
+        var items = await _context.Product.Include(x => x.ProductTag).ToListAsync();
         foreach (var item in items)
-            list.Add(item);
+        {
+            Product product = new Product();
 
-        return list;
+            product.ArticleNumber = item.ArticleNumber;
+            product.ProductName = item.ProductName;
+            product.Price = item.Price;
+            product.ImageUrl = item.ImageUrl;
+            product.Description = item.Description;
+
+            product.Tags = item.ProductTag;
+
+            products.Add(product);
+        }
+
+        return products;
     }
 }

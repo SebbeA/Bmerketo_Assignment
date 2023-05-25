@@ -24,15 +24,17 @@
                     <a asp-controller="products" asp-action="details" asp-route-id="@product.ArticleNumber" class="collection-item">
                         <div class="card mb-3">
                             <div class="card-body">
-                                <div class="password-flex justify-content-center align-items-center">
-                                    <img src="~/Images/products/@product.ImageUrl" alt="@product.ProductName" />
+                                <div class="justify-content-center align-items-center">
+                                    <img class="product-img" src="~/Images/products/@product.ImageUrl" alt="@product.ProductName" width="50px" height="50px" />
                                     <div>@product.ArticleNumber</div>
                                     <div>@product.ProductName</div>
-                                    <div>@product.Price.ToString("0.##")</div>
-                                    @foreach (var tag in product.Tags)
-                                    {
-                                        <span>@tag.Product.ProductTag</span>
-                                    }
+                                    <div>$@product.Price.ToString("0.##")</div>
+                                    <span>
+                                        @foreach (var tag in product.Tags)
+                                        {
+                                            @tag.Tag
+                                        }
+                                    </span>
                                     <i class="add-cart fa-regular fa-cart-plus"></i>
                                 </div>
                             </div>

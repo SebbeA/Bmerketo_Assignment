@@ -1,0 +1,82 @@
+.detail-card {
+    padding-top: 100px;
+
+    .container {
+
+        .product-detail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .detail-image {
+                padding-right: 30px;
+
+                .large-image {
+                    padding: 10px;
+                }
+
+                .small-images {
+                    padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+
+            .detail-info {
+                border: 1px solid $color-dark-4;
+                padding: 10px 20px 10px 20px;
+
+                .detail-name {
+                    font-size: 24px;
+                    font-weight: $font-weight-regular;
+                    font-family: $font-poppins;
+                    color: $color-dark-2;
+                }
+
+                .detail-descrip {
+                    padding-bottom: 20px;
+                }
+
+                .detail-rating {
+                    color: $color-yellow;
+                    padding-bottom: 10px;
+                }
+
+                .detail-price {
+                    padding-bottom: 10px;
+                    font-size: 24px;
+                    font-family: $font-poppins;
+                    font-weight: $font-weight-semibold;
+                    color: $color-dark-3;
+                }
+
+                .add-to-cart {
+                    justify-content: center;
+                    align-items: center;
+
+                    .counter {
+                        padding-bottom: 15px;
+
+                        .counter-button {
+                        }
+
+                        .counter-value {
+                        }
+                    }
+
+                    .btn-theme i {
+                        padding-left: 10px;
+                    }
+                }
+
+                .detail-category {
+                    padding-top: 20px;
+
+                    .category-title {
+                    }
+                }
+            }
+        }
+    }
+}
