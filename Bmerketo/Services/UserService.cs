@@ -1,5 +1,7 @@
 ﻿using Bmerketo.Contexts;
-using Bmerketo.Models.Entities;
+using Bmerketo.Models.Identity;
+using Bmerketo.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bmerketo.Services;
@@ -7,15 +9,45 @@ namespace Bmerketo.Services;
 public class UserService
 {
     private readonly IdentityContext _identityContext;
+    private readonly UserManager<AppUser> _userManager;
 
-    public UserService(IdentityContext identityContext)
+    public UserService(IdentityContext identityContext, UserManager<AppUser> userManager)
     {
         _identityContext = identityContext;
+        _userManager = userManager;
     }
 
-    //public async Task<UserProfileEntity> GetUserProfileAsync(string userId)
-    //{
-    //    var userProfileEntity = await _identityContext.UserProfiles.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userId);
-    //    return userProfileEntity!;
-    //}
+    public async Task<IEnumerable<UserViewModel>> GetUserAsync()
+    {
+        var users = await _identityContext.Users
+            .Include(u => u.Addresses)
+            .ThenInclude(a => a.Address)
+            .ToListAsync();
+
+        var userViewModels = new List<UserViewModel>();
+        foreach (var user in users)
+        {
+            var userViewModel = new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email!,
+                Company = user.Company,
+                PhoneNumber = user.PhoneNumber,
+                StreetName = user.Addresses.FirstOrDefault()?.Address.StreetName!,
+                City = user.Addresses.FirstOrDefault()?.Address.City!,
+                PostalCode = user.Addresses.FirstOrDefault()?.Address.PostalCode!
+            };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            userViewModel.Roles = roles.ToList();
+
+            userViewModels.Add(userViewModel);
+        }
+
+        return userViewModels;
+    }
+
+
 }

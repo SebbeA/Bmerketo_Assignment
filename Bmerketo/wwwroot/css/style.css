@@ -1289,3 +1289,52 @@ footer .container {
   margin-right: 4px;
   font-size: 12px;
 }
+
+.user-list {
+  background-color: #F3F2F2;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.user-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  color: #202020;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(32, 32, 32, 0.1);
+}
+
+th {
+  background-color: #FA3150;
+  color: #FFFFFF;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  padding: 1rem;
+  text-align: left;
+}
+
+td {
+  font-family: "Roboto", sans-serif;
+  padding: 1rem;
+  color: #202020;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #FA3150;
+  margin-right: 0.5rem;
+}
