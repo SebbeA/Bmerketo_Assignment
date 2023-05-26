@@ -17,7 +17,7 @@ public class UserService
         _userManager = userManager;
     }
 
-    public async Task<IEnumerable<UserViewModel>> GetUserAsync()
+    public async Task<IEnumerable<UserViewModel>> GetUsersAsync()
     {
         var users = await _identityContext.Users
             .Include(u => u.Addresses)
@@ -48,6 +48,4 @@ public class UserService
 
         return userViewModels;
     }
-
-
 }

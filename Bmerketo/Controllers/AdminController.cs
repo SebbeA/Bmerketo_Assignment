@@ -25,7 +25,7 @@ public class AdminController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var users = await _userService.GetUserAsync();
+        var users = await _userService.GetUsersAsync();
 
         return View(users);
     }
