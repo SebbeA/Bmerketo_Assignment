@@ -1251,3 +1251,41 @@ footer .container {
 .detail-card .container .product-detail .detail-info .detail-category {
   padding-top: 20px;
 }
+.all-products .container {
+  margin-bottom: 20px;
+}
+.all-products .container ._collection-title {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 38px;
+}
+.all-products .container .tag-button {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.all-products .container ._collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+}
+.all-products .container .collection-item .card {
+  width: 100%;
+  height: 100%;
+}
+.all-products .container .collection-item .card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.all-products .container .collection-item .card .card-body .justify-content-center .product-img {
+  object-fit: contain;
+}
+.all-products .container .collection-item .card .card-body .justify-content-center .product-tags .product-tag {
+  display: inline-block;
+  color: #292929;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+  font-size: 12px;
+}

@@ -80,4 +80,53 @@ public class ProductService
 
         return products;
     }
+
+    public async Task<IEnumerable<Product>> GetProductsWithoutTagsAsync()
+    {
+        var productsWithoutTags = await _context.Product
+            .Where(p => !p.ProductTag.Any())
+            .ToListAsync();
+
+        var products = productsWithoutTags.Select(p => new Product
+        {
+            ArticleNumber = p.ArticleNumber,
+            ProductName = p.ProductName,
+            Price = p.Price,
+            ImageUrl = p.ImageUrl,
+            Description = p.Description,
+            Tags = p.ProductTag
+        });
+
+        return products;
+    }
+
+    public async Task<IEnumerable<Product>> GetProductsIncludingUntaggedAsync()
+    {
+        var productsWithTags = await GetAllAsync();
+        var productsWithoutTags = await GetProductsWithoutTagsAsync();
+
+        var combinedProducts = productsWithTags.Concat(productsWithoutTags);
+
+        return combinedProducts;
+    }
+
+    public async Task<IEnumerable<Product>> GetProductsByTagAsync(string tag)
+    {
+        var products = await _context.Product
+            .Where(p => p.ProductTag.Any(pt => pt.Tag.TagName.Equals(tag, StringComparison.OrdinalIgnoreCase)))
+            .Include(p => p.ProductTag)
+            .ToListAsync();
+
+        var mappedProducts = products.Select(p => new Product
+        {
+            ArticleNumber = p.ArticleNumber,
+            ProductName = p.ProductName,
+            Price = p.Price,
+            ImageUrl = p.ImageUrl,
+            Description = p.Description,
+            Tags = p.ProductTag
+        });
+
+        return mappedProducts;
+    }
 }

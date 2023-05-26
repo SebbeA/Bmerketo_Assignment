@@ -38,7 +38,7 @@
             </div>
 
             <div class="checkbox-tags">
-                @foreach (SelectListItem tag in ViewBag.Tags)
+                @foreach (SelectListItem tag in Model.Tags)
                 {
                     <div class="mb-2">
                         <input type="checkbox" name="Tags" id="tag-@tag.Text-@tag.Value" value="@tag.Value" checked="@tag.Selected" class="form-check-input" />

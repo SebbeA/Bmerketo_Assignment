@@ -1,4 +1,5 @@
 ﻿using Bmerketo.Models.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bmerketo.ViewModels;
@@ -32,6 +33,8 @@ public class AddProductFormViewModel
 
     [Display(Name = "Description of the product (optional)")]
     public string? Description { get; set; }
+
+    public List<SelectListItem>? Tags { get; set; }
 
 
 

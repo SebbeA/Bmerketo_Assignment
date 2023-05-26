@@ -1,0 +1,59 @@
+.all-products {
+    .container {
+        margin-bottom: 20px;
+
+        ._collection-title {
+            text-align: center;
+            font-family: $font-poppins;
+            font-size: 38px;
+        }
+
+        .tag-button {
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        ._collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .collection-item {
+
+            .card {
+                width: 100%;
+                height: 100%;
+
+                .card-body {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;
+
+                    .justify-content-center {
+
+                        .product-img {
+                            object-fit: contain;
+                        }
+
+                        .product-details {
+                        }
+
+                        .product-tags {
+
+                            .product-tag {
+                                display: inline-block;
+                                color: $color-dark-2;
+                                padding: 4px 8px;
+                                border-radius: 4px;
+                                margin-right: 4px;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
